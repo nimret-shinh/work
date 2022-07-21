@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/bin/bash  
 echo "Welcome to Ancoris Homebrew Package Installer 🥳💻"
 REQUIRED_PKG="Homebrew"
 PKG_OK=$(brew doctor)
@@ -9,67 +9,32 @@ else
   echo "$REQUIRED_PKG is not installed. Please install $REQUIRED_PKG and then re-run this script :)"
 fi
 echo "Installing Docker🐳..."
-if [ "Your system is ready to brew." = "$PKG_OK" ]; then
-  echo "Docker🐳 is already installed!🎉 skipping..."
-else
-  INSTALL=$(brew install docker)
-  echo "$INSTALL"
-fi
+brew install docker
+
 echo "Installing Ansible👾..."
-if [ "" = "" ]; then
-  echo "Ansible👾 is already installed!🎉 skipping..."
-else
-  INSTALL=$(brew install ansible)
-  echo "$INSTALL"
-fi
+brew install ansible
+
 echo "Installing git 💻..."
-if [ "" = "" ]; then
-  echo "git is already installed!🎉 skipping..."
-else
-  INSTALL=$(brew install git)
-  echo "$INSTALL"
-fi
+brew install git
+
 echo "Installing gcloud SDK ⌨️ ..."
-if [ "" = "" ]; then
-  echo "gcloud SDK is already installed!🎉 skipping..."
-else
-  INSTALL=$(brew install --cask google-cloud-sdk)
-  echo "$INSTALL"
-fi
+brew install --cask google-cloud-sdk
+
 echo "Installing gcutil 🤠..."
-if [ "" = "" ]; then
-  echo "gcutil is already installed!🎉 skipping..."
-else
-if [ "" = "" ]; then
-  echo "Helm is already installed!🎉 skipping..."
-else
-  INSTALL=$(brew install helm)
-  echo "$INSTALL"
-fi
+brew install gcutil
+
+echo "Installing Helm..."
+brew install helm
+
 echo "Installing Kubernetes🧊..."
-if [ "" = "" ]; then
-  echo "Kubernetes is already installed!🎉 skipping..."
-else
-  INSTALL=$(brew install kubernetes-cli@1.22)
-  echo "$INSTALL"
-fi
+brew install kubernetes-cli@1.22
+
 echo "Installing Python🐍..."
-if [ "" = "" ]; then
-  echo "Python is already installed!🎉 skipping..."
-else
-  INSTALL=$(brew install pyenv)
-  echo "$INSTALL"
-fi
+brew install pyenv
+
 echo "Installing Terraform🌈..."
-if [ "" = "" ]; then
-  echo "Terraform is already installed!🎉 skipping..."
-else
-  INSTALL=$(brew install Terraform)
-  echo "$INSTALL"
-fi
-echo "Installing tfenv🪐..."
-  echo "$INSTALL"
-fi
+brew install tfenv
+
 echo "Here are all your installed packages:"
 brew list
 echo "All packages are now installed for you to use!🥳 For a full list of packages visit the Cloud Modernisation Confluence page 💻 Happy Coding! 💻"
