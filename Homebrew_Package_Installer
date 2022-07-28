@@ -1,40 +1,37 @@
 #!/bin/bash  
-echo "Welcome to Ancoris Homebrew Package Installer 🥳💻"
+echo "Welcome to Ancoris Homebrew Package Installer 🥳 💻"
 REQUIRED_PKG="Homebrew"
 PKG_OK=$(brew doctor)
+# Checking local system for Homebrew...
 echo Checking for $REQUIRED_PKG: $PKG_OK
 if [ "Your system is ready to brew." = "$PKG_OK" ]; then
-  echo "$REQUIRED_PKG is installed🍻! Installing packages..."
+  echo "$REQUIRED_PKG is installed🍻! Let's install some packages..."
 else
-  echo "$REQUIRED_PKG is not installed. Please install $REQUIRED_PKG and then re-run this script :)"
+  echo "$REQUIRED_PKG is not installed"
+  echo "Installing $REQUIRED_PKG"
+  # run brew installation command:
+  echo "Installing $REQUIRED_PKG"
+  /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
 fi
-echo "Installing Docker🐳..."
-brew install docker
 
-echo "Installing Ansible👾..."
-brew install ansible
+# Homebrew Packages to install can be added here: 
+declare -a brew_packages=("docker" "ansible" "git" "helm" "kubernetes-cli@1.22" "pyenv" "tfenv")
 
-echo "Installing git 💻..."
-brew install git
+# Checking if any listed packages are already installed
+PKG_CHECK=$(
+for i in "${brew_packages[@]}"      
+do 
+  brew list | grep "$i"
+done
+)
 
-echo "Installing gcloud SDK ⌨️ ..."
-brew install --cask google-cloud-sdk
+# Installing any packages not already installed
+for i in ${brew_packages[@]}; 
+  do                                                     
+  if ! echo "$PKG_CHECK" | grep "$i" ; then
+    echo "Installing $i" && brew install "$i" 
+  fi
+done
 
-echo "Installing gcutil 🤠..."
-brew install gcutil
-
-echo "Installing Helm..."
-brew install helm
-
-echo "Installing Kubernetes🧊..."
-brew install kubernetes-cli@1.22
-
-echo "Installing Python🐍..."
-brew install pyenv
-
-echo "Installing Terraform🌈..."
-brew install tfenv
-
-echo "Here are all your installed packages:"
-brew list
-echo "All packages are now installed for you to use!🥳 For a full list of packages visit the Cloud Modernisation Confluence page 💻 Happy Coding! 💻"
+echo "Installation complete! Run brew list to view your installed packages"
+echo  "🥳 💻 Happy coding!🥳 💻"
