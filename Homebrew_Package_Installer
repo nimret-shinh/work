@@ -15,7 +15,7 @@ else
 fi
 
 # Homebrew Packages to install can be added here: 
-declare -a brew_packages=("docker" "ansible" "git" "helm" "kubernetes-cli@1.22" "gcutil" "pyenv" "tfenv")
+declare -a brew_packages=("docker" "ansible" "git" "helm" "kubernetes-cli@1.22" "gcutil" "pyenv" "tfenv" "--cask google-cloud-sdk")
 
 # Checking if any listed packages are already installed
 PKG_CHECK=$(
